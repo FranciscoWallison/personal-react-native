@@ -17,7 +17,7 @@ interface IExercicio {
 }
 interface IExercicios extends Array<IExercicio>{}
 
-const AdicaoExercicios = ({ route, navigation }: any) => {
+const AdicionarExercicios = ({ route, navigation }: any) => {
   const [exercicioNome, setExercicioNome] = useState("");
   const [exercicioDescricao, setExercicioDescricao] = useState("");
   const [videoURL, setVideoURI] = useState("");
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdicaoExercicios;
+export default AdicionarExercicios;

@@ -1,34 +1,23 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
+// // App.tsx
+// import React from 'react';
+// import AppNavigator from './src/pages/Navigation';
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import CadastroAluno from "./src/components/CadastroAluno";
-// import PlanosTreino from "./src/components/PlanosTreino";
-import AdicaoExercicios from "./src/components/AdicaoExercicios";
+// const App = () => {
+//   return <AppNavigator />;
+// };
 
+// export default App;
+// navigation/AppNavigator.tsx
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigator from './src/pages/Navigation/Stack';
 
-const Stack = createStackNavigator();
-export default function App() {
+const AppNavigator = () => {
   return (
-    <>
-      <StatusBar backgroundColor="transparent" translucent />
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="CadastroAluno">
-          <Stack.Screen name="CadastroAluno" component={CadastroAluno} />
-          {/* <Stack.Screen name="PlanosTreino" component={PlanosTreino} /> */}
-          <Stack.Screen name="AdicaoExercicios" component={AdicaoExercicios} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </>
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default AppNavigator;

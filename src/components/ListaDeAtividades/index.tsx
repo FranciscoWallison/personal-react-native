@@ -1,4 +1,4 @@
-// CadastroAluno.js
+// ListaDeAtividades.js
 import React, { useState } from "react";
 import {
   View,
@@ -7,14 +7,23 @@ import {
   SafeAreaView,
   StyleSheet,
 } from "react-native";
+import Config from "react-native-config";
 
 // const planosDeTreino = require('../../db/alunos.json');
 
-const CadastroAluno = ({ navigation }) => {
+const ListaDeAtividades = ({ navigation }: any) => {
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");
   const [altura, setAltura] = useState("");
   const [peso, setPeso] = useState("");
+
+  console.log(
+    Config.API_URL,
+    Config.GOOGLE_MAPS_API_KEY,
+    Config,
+    process.env,
+    process.env.EXPO_PUBLIC_API_URL
+  );
 
   const handleCadastro = () => {
     // Lógica para enviar dados para o servidor ou armazenar localmente
@@ -68,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CadastroAluno;
+export default ListaDeAtividades;
