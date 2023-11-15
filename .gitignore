@@ -36,3 +36,4 @@ yarn-error.*
 
 #config
 .env
+.env*.local
