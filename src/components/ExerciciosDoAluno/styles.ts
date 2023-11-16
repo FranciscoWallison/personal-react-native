@@ -11,15 +11,13 @@ export const styles = StyleSheet.create({
     height: 400
   },
   itemContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 8,
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 2,
-    // marginBottom: 8,
-    // backgroundColor: "black",
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
+    // padding: 8,
+    // borderWidth: 1,
+    // borderColor: 'gray',
+    // borderRadius: 2,
   },
   areaPessoa: {
     backgroundColor: "black",

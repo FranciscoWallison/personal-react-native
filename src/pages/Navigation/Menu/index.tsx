@@ -5,9 +5,9 @@ import BottomTabNavigator from './BottomTabNavigator';
 
 const Home = () => {
   return (
-    <NavigationContainer independent={true}>
+    <>
       <BottomTabNavigator />
-    </NavigationContainer>
+    </>
   );
 };
 

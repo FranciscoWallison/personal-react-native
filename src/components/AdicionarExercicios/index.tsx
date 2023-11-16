@@ -64,7 +64,7 @@ const AdicionarExercicios = ({ navigation }: any) => {
     setVideoURI("");
   };
 
-  const handleConfirmar = () => {
+  const handleConfirmarEditar = () => {
     const listaDeExercicios = exercicios;
     // Lógica para confirmar e realizar algum evento
     console.log("Exercício Confirmado:", listaDeExercicios);
@@ -72,124 +72,119 @@ const AdicionarExercicios = ({ navigation }: any) => {
     // navigation.navigate("ExerciciosDoAluno", { listaDeExercicios });
   };
 
-  const onExercicios = () => {};
+  const onExerciciosDelete = (id: any) => {
+    const newExercicios = exercicios.filter(objeto => objeto.id !== id);
+    setExercicios(newExercicios);
+
+  };
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
-        <TextInput
-          style={styles.input}
-          placeholder="Nome do Exercício"
-          value={exercicioNome}
-          onChangeText={(text) => setExercicioNome(text)}
-        />
-        <TextInput
-          style={[styles.input, { height: 200, textAlignVertical: "top" }]}
-          placeholder="Descrição do Exercício"
-          value={exercicioDescricao}
-          multiline={true}
-          numberOfLines={10}
-          onChangeText={(text) => setExercicioDescricao(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="URL do Vídeo Demonstrativo"
-          value={videoURL}
-          onChangeText={(text) => setVideoURI(text)}
-        />
+      <TextInput
+        style={styles.input}
+        placeholder="Nome do Exercício"
+        value={exercicioNome}
+        onChangeText={(text) => setExercicioNome(text)}
+      />
+      <TextInput
+        style={[styles.input, { height: 200, textAlignVertical: "top" }]}
+        placeholder="Descrição do Exercício"
+        value={exercicioDescricao}
+        multiline={true}
+        numberOfLines={10}
+        onChangeText={(text) => setExercicioDescricao(text)}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="URL do Vídeo Demonstrativo"
+        value={videoURL}
+        onChangeText={(text) => setVideoURI(text)}
+      />
 
-        <Pressable
+      <Pressable
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          paddingVertical: 12,
+          paddingHorizontal: 32,
+          borderRadius: 4,
+          elevation: 3,
+          backgroundColor: "green",
+        }}
+        onPress={adicionarExercicio}
+      >
+        <Text
           style={{
-            alignItems: "center",
-            justifyContent: "center",
-            paddingVertical: 12,
-            paddingHorizontal: 32,
-            borderRadius: 4,
-            elevation: 3,
-            backgroundColor: "green",
-          }}
-          onPress={adicionarExercicio}
-        >
-          <Text
-            style={{
-              fontSize: 16,
-              lineHeight: 21,
-              fontWeight: "bold",
-              letterSpacing: 0.25,
-              color: "white",
-            }}
-          >
-            Adicionar Exercício
-          </Text>
-        </Pressable>
-        {/* Lista de exercícios adicionados */}
-        <View style={styles.title_exercicios}>
-          <Text style={styles.text_exercicios}>
-            Exercícios Adicionados: {exercicios.length}
-          </Text>
-        </View>
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
+            fontSize: 16,
+            lineHeight: 21,
+            fontWeight: "bold",
+            letterSpacing: 0.25,
+            color: "white",
           }}
         >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>Exercicios Cadastrados</Text>
-              <FlatList
-                data={exercicios}
-                keyExtractor={(item: any) => item.id.toString()}
-                renderItem={({ item }) => (
-                  <ExerciciosDoAluno exercicios={item} />
-                )}
-              />
-              
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textStyleClose}>Voltar para Cadastro</Text>
-              </Pressable>
+          Adicionar Exercício
+        </Text>
+      </Pressable>
+      {/* Lista de exercícios adicionados */}
+      <View style={styles.title_exercicios}>
+        <Text style={styles.text_exercicios}>
+          Exercícios Adicionados: {exercicios.length}
+        </Text>
+      </View>
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Exercicios Cadastrados</Text>
+            <FlatList
+              data={exercicios}
+              keyExtractor={(item: any) => item.id.toString()}
+              renderItem={({ item }) => <ExerciciosDoAluno exercicios={item}  onExerciciosDelete={onExerciciosDelete}/>}
+            />
 
-              <Pressable
-                style={[styles.button, styles.buttonConfirmar]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textStyleConfirmar}>Confirmar</Text>
-              </Pressable>
-            </View>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyleClose}>Voltar para Cadastro</Text>
+            </Pressable>
+
+            <Pressable
+              style={[styles.button, styles.buttonConfirmar]}
+              onPress={() => { 
+                navigation.navigate('Success');
+                setModalVisible(!modalVisible)
+              }}
+            >
+              <Text style={styles.textStyleConfirmar}>Confirmar</Text>
+            </Pressable>
           </View>
-        </Modal>
+        </View>
+      </Modal>
 
-        <Pressable
+      <Pressable
+        style={styles.buttonConfirmarEditar}
+        onPress={handleConfirmarEditar}
+        disabled={!exercicios}
+      >
+        <Text
           style={{
-            alignItems: "center",
-            justifyContent: "center",
-            paddingVertical: 12,
-            paddingHorizontal: 32,
-            borderRadius: 4,
-            elevation: 3,
-            backgroundColor: "blue",
+            fontSize: 16,
+            lineHeight: 21,
+            fontWeight: "bold",
+            letterSpacing: 0.25,
+            color: "white",
           }}
-          onPress={handleConfirmar}
-          disabled={!exercicios}
         >
-          <Text
-            style={{
-              fontSize: 16,
-              lineHeight: 21,
-              fontWeight: "bold",
-              letterSpacing: 0.25,
-              color: "white",
-            }}
-          >
-            Confirmar ou Editar
-          </Text>
-        </Pressable>
-      </SafeAreaView>
+          Confirmar ou Editar
+        </Text>
+      </Pressable>
     </View>
   );
 };
@@ -197,7 +192,7 @@ const AdicionarExercicios = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     marginHorizontal: 16,
   },
   input: {
@@ -240,7 +235,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    
   },
   button: {
     borderRadius: 5,
@@ -255,6 +249,15 @@ const styles = StyleSheet.create({
   buttonConfirmar: {
     backgroundColor: "green",
     width: 400,
+  },
+  buttonConfirmarEditar: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "blue",
   },
   textStyleClose: {
     color: "white",
