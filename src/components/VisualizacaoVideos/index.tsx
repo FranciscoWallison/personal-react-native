@@ -12,7 +12,9 @@ import * as ScreenOnriention from "expo-screen-orientation"
 
 import { styles, VIDEO_HEIGHT, VIDEO_SPACE } from "./styles";
 
-const VisualizacaoVideos = () => {
+const VisualizacaoVideos = (props: any) => {
+
+  console.log("VisualizacaoVideos.props: ",  props)
   const [videoReady, setVideoReady] = useState(false);
   const { width } = useWindowDimensions();
   const VIDEO_WIDTH = width - (VIDEO_SPACE * 2)
@@ -33,13 +35,13 @@ const VisualizacaoVideos = () => {
     },
     [],
   )
-  
+  // https://www.youtube.com/watch?v=GKpHcN1xM3o
 
   return (
     <View style={styles.container}>
       <View style={styles.player}>
         <YoutubeIframe
-          videoId={"iee2TATGMyI"}
+          videoId={"GKpHcN1xM3o"}
           onReady={() => setVideoReady(true)}
           height={videoReady ? VIDEO_HEIGHT : 0 }
           width={VIDEO_WIDTH}

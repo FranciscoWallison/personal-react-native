@@ -20,5 +20,6 @@ export const styles = StyleSheet.create({
   },
   create_account: {
     marginTop: 16,
-  }
+  },
+  error: { color: "red", textAlign: "center", marginTop: 10 },
 });

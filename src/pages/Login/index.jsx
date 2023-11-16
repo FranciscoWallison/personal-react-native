@@ -4,11 +4,14 @@ import { View, Text, TextInput, Button } from "react-native";
 import { auth } from "./../../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { styles } from "./styles";
-
+import { Login as LoginEntie } from "../../entities/Login";
+const userLogin = new LoginEntie();
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [textoLogin, setTextoLogin] = useState("");
 
   const handleLogin = () => {
     // Lógica de autenticação aqui
@@ -18,13 +21,17 @@ const Login = ({ navigation }) => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+
         console.log("Signed in - user : ", user);
-        // ...
+        if (userLogin.login(user)) {
+          navigation.navigate("Home");
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("Signed in - error: ", error, errorMessage, errorCode);
+        setTextoLogin("Login invalido.");
       });
   };
 
@@ -54,6 +61,8 @@ const Login = ({ navigation }) => {
       <View style={styles.create_account}>
         <Button title="Ir para Cadastro" onPress={handleCreateAccount} />
       </View>
+
+      {textoLogin != "" ? <Text style={styles.error}> {textoLogin} </Text> : ""}
     </View>
   );
 };

@@ -15,15 +15,16 @@ export class Login {
     return false;
   };
 
+  /*
+   TODO::Adicionar a logica de remover tudo que tiver em memoria
+   do usuario logado
+  */
   logout = async (user: any) => {
     try {
-      if (!user) {
-        userLogin.delete();
-        return true;
-      }
+      userLogin.delete();
+      return true;
     } catch (error) {
-      return false;
+      throw new Error(`Login.logout ERRO: ${error}`);      
     }
-    return false;
   };
 }

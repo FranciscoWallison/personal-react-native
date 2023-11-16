@@ -7,7 +7,7 @@ export class Users {
     await AsyncStorage.setItem(USER_TOKEN, user);
   };
 
-  get = async (user: any) => {
+  get = async () => {
     const tokenUaser = await AsyncStorage.getItem(USER_TOKEN);
     return tokenUaser;
   };
