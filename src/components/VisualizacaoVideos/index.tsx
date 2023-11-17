@@ -14,7 +14,7 @@ import { styles, VIDEO_HEIGHT, VIDEO_SPACE } from "./styles";
 
 const VisualizacaoVideos = (props: any) => {
 
-  console.log("VisualizacaoVideos.props: ",  props)
+  // console.log("VisualizacaoVideos.props: ",  props)
   const [videoReady, setVideoReady] = useState(false);
   const { width } = useWindowDimensions();
   const VIDEO_WIDTH = width - (VIDEO_SPACE * 2)

@@ -1,22 +1,54 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Pressable, Button } from "react-native";
-import * as Clipboard from 'expo-clipboard';
-const Success = ({ navigation }) => {
+import * as Clipboard from "expo-clipboard";
+import ExerciciosPersonal  from "../../entities/ExerciciosPersonal";
+
+
+import { Users } from "../../entities/Users";
+
+const Success = ({ route, navigation }) => {
+
+  const exerciciosPersonal = new ExerciciosPersonal();
+  const userLogin = new Users();
   const [token, setToken] = useState("");
 
   useEffect(() => {
     // Gerar um token de 4 dígitos aleatórios
-    const novoToken = Math.floor(1000 + Math.random() * 9000).toString();
-    setToken(novoToken);
+    const cadastroExercicios = async () => {
+      try {
+        const user = await userLogin.get();
+        setTimeout(() => {
+          if (user) {
+            const novoToken = Math.floor(
+              1000 + Math.random() * 9000
+            ).toString();
+            setToken(novoToken);
+            const cadastroExercicios = {
+              token: token,
+              route: route.params.exercicios,
+            };
+            console.log("route:", cadastroExercicios, user);
+          } else {
+            // Se não houver token, o usuário não está autenticado, vá para a tela de login
+            navigation.replace("Login");
+          }
+        }, 2000); // Adicione um atraso de 2 segundos para simular a exibição da tela de splash
+      } catch (error) {
+        console.error("Success - Erro ao verificar o token:", error);
+      }
+    };
+
+    cadastroExercicios();
   }, []);
 
   const navigateToSuccessScreen = () => {
-    navigation.navigate('Splash');
+    navigation.navigate("Splash");
   };
 
   const copiarTextoParaClipboard = async () => {
+    // console.log("route:", route)
     await Clipboard.setStringAsync(token);
-    alert('Token copiado para a área de transferência!');
+    alert("Token copiado para a área de transferência!");
   };
 
   return (

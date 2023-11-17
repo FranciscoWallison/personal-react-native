@@ -11,7 +11,6 @@ import {
   Pressable,
 } from "react-native";
 import ExerciciosDoAluno from "../ExerciciosDoAluno";
-import { MaterialIcons } from "@expo/vector-icons";
 
 interface IExercicio {
   id: number;
@@ -67,9 +66,8 @@ const AdicionarExercicios = ({ navigation }: any) => {
   const handleConfirmarEditar = () => {
     const listaDeExercicios = exercicios;
     // Lógica para confirmar e realizar algum evento
-    console.log("Exercício Confirmado:", listaDeExercicios);
+    // console.log("Exercício Confirmado:", listaDeExercicios);
     setModalVisible(true);
-    // navigation.navigate("ExerciciosDoAluno", { listaDeExercicios });
   };
 
   const onExerciciosDelete = (id: any) => {
@@ -158,7 +156,7 @@ const AdicionarExercicios = ({ navigation }: any) => {
             <Pressable
               style={[styles.button, styles.buttonConfirmar]}
               onPress={() => { 
-                navigation.navigate('Success');
+                navigation.navigate('Success', {exercicios});
                 setModalVisible(!modalVisible)
               }}
             >

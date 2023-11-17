@@ -1,30 +1,41 @@
 // TODO::Criar modal
-import { Users } from "./Users";
-const userLogin = new Users();
+import Users from "./Users";
 
-export class Login {
-  login = async (user: any) => {
-    try {
-      if (!user) {
-        userLogin.set(user);
-        return true;
-      }
-    } catch (error) {
-      return false;
-    }
-    return false;
-  };
+class Login {
+  // Propriedade privada
+  public userLogin: Users;
 
-  /*
-   TODO::Adicionar a logica de remover tudo que tiver em memoria
-   do usuario logado
-  */
-  logout = async (user: any) => {
-    try {
-      userLogin.delete();
-      return true;
-    } catch (error) {
-      throw new Error(`Login.logout ERRO: ${error}`);      
-    }
-  };
+  // Construtor
+  constructor() {
+    this.userLogin = new Users();
+  }
+
+  // Método assíncrono
+  public async login(user: any): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        try {
+          resolve(await this.userLogin.set(user));
+        } catch (error) {
+          reject(new Error(`login - Erro na operação! ${error}`));
+        }
+      }, 1000);
+    });
+  }
+
+  public async logout(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+
+        try {
+          this.userLogin.delete();
+          resolve();
+        } catch (error) {
+          reject(new Error(`logout - Erro na operação! ${error}`));
+        }
+         
+      }, 1000);
+    });
+  }
 }
+export default Login;

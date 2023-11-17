@@ -4,28 +4,26 @@ import { View, Text, TextInput, Button } from "react-native";
 import { auth } from "./../../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { styles } from "./styles";
-import { Login as LoginEntie } from "../../entities/Login";
-const userLogin = new LoginEntie();
-
+import LoginUser from "../../entities/Login";
+import Users from "../../entities/Users";
 const Login = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const userLogin = new LoginUser();
+  const users = new Users();
+
+  const [email, setEmail] = useState("franciscowallison@gmail.com");
+  const [password, setPassword] = useState("123456");
 
   const [textoLogin, setTextoLogin] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // Lógica de autenticação aqui
     console.log(`Login: ${email} / Senha: ${password}`);
 
-    signInWithEmailAndPassword(auth, email, password)
+    const firebase = await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-
-        console.log("Signed in - user : ", user);
-        if (userLogin.login(user)) {
-          navigation.navigate("Home");
-        }
+        return user;
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -33,6 +31,10 @@ const Login = ({ navigation }) => {
         console.log("Signed in - error: ", error, errorMessage, errorCode);
         setTextoLogin("Login invalido.");
       });
+
+    if (await userLogin.login(firebase)) {
+      navigation.navigate("Home");
+    }
   };
 
   const handleCreateAccount = () => {

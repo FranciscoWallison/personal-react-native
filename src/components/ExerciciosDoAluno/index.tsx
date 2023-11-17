@@ -4,17 +4,7 @@ import { View, Text, TouchableOpacity, Button } from "react-native";
 
 import { styles } from "./styles";
 const ExerciciosDoAluno = ({ exercicios, onExerciciosDelete }: any) => {
-  console.log("ExerciciosDoAluno: ", exercicios);
-  const handleEditar = (id: any) => {
-    // Lógica para editar o exercício com o ID fornecido
-    console.log("Editar exercício com ID:", id);
-  };
-
-  const handleDeletar = (id: any) => {
-    // Lógica para deletar o exercício com o ID fornecido
-    console.log("Deletar exercício com ID:", id, exercicios);
-
-  };
+  // console.log("ExerciciosDoAluno: ", exercicios);
 
   return (
     <View style={styles.container}>
