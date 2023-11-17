@@ -10,7 +10,7 @@ import {
   FlatList,
   Pressable,
 } from "react-native";
-import ExerciciosDoAluno from "../ExerciciosDoAluno";
+import ModalExercicios from "../ModalExercicios";
 
 interface IExercicio {
   id: number;
@@ -29,6 +29,7 @@ const AdicionarExercicios = ({ navigation }: any) => {
   // const { planoDeTreino } = route.params;
   const [modalVisible, setModalVisible] = useState(false);
 
+  //TODO::criar um estrutura de helps ou utilitários
   const validarUrlYutube = (url: string) => {
     if (url.includes(`https://www.youtube.com/watch?v=`)) {
       const urlBrawser = url.split("https://www.youtube.com/watch?v=")[1];
@@ -71,13 +72,23 @@ const AdicionarExercicios = ({ navigation }: any) => {
   };
 
   const onExerciciosDelete = (id: any) => {
-    const newExercicios = exercicios.filter(objeto => objeto.id !== id);
+    const newExercicios = exercicios.filter((objeto) => objeto.id !== id);
     setExercicios(newExercicios);
+  };
 
+  const confimarExercicios = () => {
+    navigation.navigate("Success", { exercicios });
+    setModalVisible(!modalVisible);
   };
 
   return (
     <View style={styles.container}>
+      <View style={styles.title_exercicios}>
+        <Text style={styles.text_exercicios}>
+          Exercícios Adicionados: {exercicios.length}
+        </Text>
+      </View>
+
       <TextInput
         style={styles.input}
         placeholder="Nome do Exercício"
@@ -124,47 +135,14 @@ const AdicionarExercicios = ({ navigation }: any) => {
         </Text>
       </Pressable>
       {/* Lista de exercícios adicionados */}
-      <View style={styles.title_exercicios}>
-        <Text style={styles.text_exercicios}>
-          Exercícios Adicionados: {exercicios.length}
-        </Text>
-      </View>
-      <Modal
-        animationType="slide"
-        transparent={false}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Exercicios Cadastrados</Text>
-            <FlatList
-              data={exercicios}
-              keyExtractor={(item: any) => item.id.toString()}
-              renderItem={({ item }) => <ExerciciosDoAluno exercicios={item}  onExerciciosDelete={onExerciciosDelete}/>}
-            />
-
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyleClose}>Voltar para Cadastro</Text>
-            </Pressable>
-
-            <Pressable
-              style={[styles.button, styles.buttonConfirmar]}
-              onPress={() => { 
-                navigation.navigate('Success', {exercicios});
-                setModalVisible(!modalVisible)
-              }}
-            >
-              <Text style={styles.textStyleConfirmar}>Confirmar</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+      <ModalExercicios
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        exercicios={exercicios}
+        onExerciciosDelete={onExerciciosDelete}
+        confimarExercicios={confimarExercicios}
+      />
+      {/* FIM do modal */}
 
       <Pressable
         style={styles.buttonConfirmarEditar}
@@ -205,7 +183,9 @@ const styles = StyleSheet.create({
     height: 200,
   },
   title_exercicios: {
-    flexDirection: "row", // Isso alinhará os itens horizontalmente
+    flexDirection: "row",
+    justifyContent: "center",
+    marginHorizontal: 16,
   },
   text_exercicios: {
     flex: 1,
@@ -256,6 +236,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     elevation: 3,
     backgroundColor: "blue",
+    marginTop: 20,
   },
   textStyleClose: {
     color: "white",

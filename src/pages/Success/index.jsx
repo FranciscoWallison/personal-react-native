@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Pressable, Button } from "react-native";
 import * as Clipboard from "expo-clipboard";
-import ExerciciosPersonal  from "../../entities/ExerciciosPersonal";
-
-
-import { Users } from "../../entities/Users";
+import ExerciciosPersonal from "../../entities/ExerciciosPersonal";
+import Users from "../../entities/Users";
 
 const Success = ({ route, navigation }) => {
-
-  const exerciciosPersonal = new ExerciciosPersonal();
   const userLogin = new Users();
+  const exerciciosPersonal = new ExerciciosPersonal();
+
   const [token, setToken] = useState("");
+  const [cadastrodosExercicios, setCadastrodosExercicios] = useState({});
 
   useEffect(() => {
     // Gerar um token de 4 dígitos aleatórios
@@ -26,8 +25,11 @@ const Success = ({ route, navigation }) => {
             const cadastroExercicios = {
               token: token,
               route: route.params.exercicios,
+              visto: false,
+              uid: user.uid,
             };
-            console.log("route:", cadastroExercicios, user);
+            console.log("route:", cadastroExercicios, user.uid);
+            setCadastrodosExercicios(cadastroExercicios);
           } else {
             // Se não houver token, o usuário não está autenticado, vá para a tela de login
             navigation.replace("Login");
@@ -41,7 +43,9 @@ const Success = ({ route, navigation }) => {
     cadastroExercicios();
   }, []);
 
-  const navigateToSuccessScreen = () => {
+  const navigateToSuccessScreen = async () => {
+    const result = await exerciciosPersonal.create(cadastrodosExercicios);
+    console.log("cadastroExercicios: ", cadastrodosExercicios, result);
     navigation.navigate("Splash");
   };
 
