@@ -17,7 +17,11 @@ const ModalExercicios = ({
   exercicios,
   onExerciciosDelete,
   confimarExercicios,
-}) => {
+  validConfimarExercicios,
+  validonExerciciosDelete,
+  textoTitle,
+  textoVoltar
+}: any) => {
   return (
     <View style={{}}>
       <Modal
@@ -30,7 +34,7 @@ const ModalExercicios = ({
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Exercicios Cadastrados</Text>
+            <Text style={styles.modalText}>{textoTitle}</Text>
             <FlatList
               data={exercicios}
               keyExtractor={(item: any) => item.id.toString()}
@@ -38,6 +42,7 @@ const ModalExercicios = ({
                 <ExerciciosDoAluno
                   exercicios={item}
                   onExerciciosDelete={onExerciciosDelete}
+                  validonExerciciosDelete={validonExerciciosDelete}
                 />
               )}
             />
@@ -46,15 +51,18 @@ const ModalExercicios = ({
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={styles.textStyleClose}>Voltar para Cadastro</Text>
+              <Text style={styles.textStyleClose}>{textoVoltar}</Text>
             </Pressable>
-
-            <Pressable
-              style={[styles.button, styles.buttonConfirmar]}
-              onPress={confimarExercicios}
-            >
-              <Text style={styles.textStyleConfirmar}>Confirmar</Text>
-            </Pressable>
+            {validConfimarExercicios ? (
+              <Pressable
+                style={[styles.button, styles.buttonConfirmar]}
+                onPress={confimarExercicios}
+              >
+                <Text style={styles.textStyleConfirmar}>Confirmar</Text>
+              </Pressable>
+            ) : (
+              <></>
+            )}
           </View>
         </View>
       </Modal>

@@ -15,25 +15,9 @@ const Success = ({ route, navigation }) => {
     // Gerar um token de 4 dígitos aleatórios
     const cadastroExercicios = async () => {
       try {
-        const user = await userLogin.get();
         setTimeout(() => {
-          if (user) {
-            const novoToken = Math.floor(
-              1000 + Math.random() * 9000
-            ).toString();
-            setToken(novoToken);
-            const cadastroExercicios = {
-              token: token,
-              route: route.params.exercicios,
-              visto: false,
-              uid: user.uid,
-            };
-            console.log("route:", cadastroExercicios, user.uid);
-            setCadastrodosExercicios(cadastroExercicios);
-          } else {
-            // Se não houver token, o usuário não está autenticado, vá para a tela de login
-            navigation.replace("Login");
-          }
+          const novoToken = Math.floor(1000 + Math.random() * 9000).toString();
+          setToken(novoToken);
         }, 2000); // Adicione um atraso de 2 segundos para simular a exibição da tela de splash
       } catch (error) {
         console.error("Success - Erro ao verificar o token:", error);
@@ -44,8 +28,19 @@ const Success = ({ route, navigation }) => {
   }, []);
 
   const navigateToSuccessScreen = async () => {
-    const result = await exerciciosPersonal.create(cadastrodosExercicios);
-    console.log("cadastroExercicios: ", cadastrodosExercicios, result);
+    const user = await userLogin.get();
+
+    const cadastroExercicios = {
+      token: token,
+      route: route.params.exercicios,
+      visto: false,
+      uid: user.uid,
+    };
+    setCadastrodosExercicios(cadastroExercicios);
+
+    const result = await exerciciosPersonal.create(cadastroExercicios);
+
+    console.log("cadastroExercicios: ", cadastroExercicios, result);
     navigation.navigate("Splash");
   };
 

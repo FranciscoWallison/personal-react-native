@@ -3,7 +3,11 @@ import VisualizacaoVideos from "../VisualizacaoVideos";
 import { View, Text, TouchableOpacity, Button } from "react-native";
 
 import { styles } from "./styles";
-const ExerciciosDoAluno = ({ exercicios, onExerciciosDelete }: any) => {
+const ExerciciosDoAluno = ({
+  exercicios,
+  onExerciciosDelete,
+  validonExerciciosDelete,
+}: any) => {
   // console.log("ExerciciosDoAluno: ", exercicios);
 
   return (
@@ -22,10 +26,14 @@ const ExerciciosDoAluno = ({ exercicios, onExerciciosDelete }: any) => {
           }}
         >
           {/* <Button title="Editar" onPress={() => handleEditar(exercicios.id)} /> */}
-          <Button
-            title="Deletar"
-            onPress={() => onExerciciosDelete(exercicios.id)}
-          />
+          {validonExerciciosDelete ? (
+            <Button
+              title="Deletar"
+              onPress={() => onExerciciosDelete(exercicios.id)}
+            />
+          ) : (
+            <></>
+          )}
         </TouchableOpacity>
       </View>
     </View>

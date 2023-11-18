@@ -140,7 +140,11 @@ const AdicionarExercicios = ({ navigation }: any) => {
         setModalVisible={setModalVisible}
         exercicios={exercicios}
         onExerciciosDelete={onExerciciosDelete}
+        validonExerciciosDelete={true}
         confimarExercicios={confimarExercicios}
+        validConfimarExercicios={true}
+        textoTitle={"Exercicios Cadastrados"}
+        textoVoltar={"Voltar para Cadastro"}
       />
       {/* FIM do modal */}
 

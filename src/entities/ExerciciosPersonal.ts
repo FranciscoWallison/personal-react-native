@@ -1,14 +1,17 @@
 // TODO::Criar modal
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Users from "./Users";
 const EXERCICIOS_PERSONAL = "exercicios";
+const EXERCICIOS_PERSONAL_C = "exercicios_C";
 import { app, database } from "../config/firebaseConfig";
 import {
   doc,
   getDoc,
   getDocs,
+  setDoc,
   collection,
-  updateDoc,
-  deleteDoc,
+  query,
+  where,
   addDoc,
 } from "firebase/firestore";
 
@@ -16,17 +19,19 @@ const dbInstance = collection(database, EXERCICIOS_PERSONAL);
 
 class ExerciciosPersonal {
   // Propriedade privada
+  public userLogin: Users;
 
   // Construtor
-  constructor() {}
+  constructor() {
+    this.userLogin = new Users();
+  }
 
   public async create(exercicios: any): Promise<string> {
     return new Promise((resolve, reject) => {
       setTimeout(async () => {
         try {
-          addDoc(dbInstance, exercicios).then(() => {
-            console.log("adicionado: ", exercicios);
-          });
+          await setDoc(doc(dbInstance, exercicios.token), exercicios);
+
           resolve("Operação bem-sucedida!");
         } catch (error) {
           reject(new Error(`Erro na operação! ${error}`));
@@ -35,16 +40,43 @@ class ExerciciosPersonal {
     });
   }
 
-  public async consult(token_exercicio: any): Promise<string> {
+  public async consult_token(token_exercicio: any): Promise<string> {
     return new Promise((resolve, reject) => {
       setTimeout(async () => {
         try {
-          const singleUsuario = doc(database, EXERCICIOS_PERSONAL, token_exercicio);
+          const singleUsuario = doc(
+            database,
+            EXERCICIOS_PERSONAL,
+            token_exercicio
+          );
           const data = getDoc(singleUsuario);
-          // const exercicio = { ...data?.data(), token: data?.token };
-          console.log("consult: ", {});
+          const exercicio = { ...data?.data(), token: data?.token };
+          console.log("consult: ", exercicio);
 
           resolve("Operação bem-sucedida!");
+        } catch (error) {
+          reject(new Error(`Erro na operação! ${error}`));
+        }
+      }, 1000);
+    });
+  }
+
+  public async consult_treinador(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        try {
+          const user = await this.userLogin.get();
+
+          const citiesCollection = collection(database, EXERCICIOS_PERSONAL);
+
+          const q = query(citiesCollection, where("uid", "==", user.uid));
+
+          const querySnapshot = await getDocs(q);
+          let allUser = []
+          querySnapshot.forEach((doc: any) => {
+            allUser.push({ ...doc.data(), id: doc.id });
+          });
+          resolve(allUser);
         } catch (error) {
           reject(new Error(`Erro na operação! ${error}`));
         }
