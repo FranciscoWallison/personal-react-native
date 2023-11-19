@@ -2,7 +2,7 @@
   "expo": {
     "name": "PersonalFaltou",
     "slug": "PersonalFaltou",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,9 +18,9 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/Euro-Treino--academia--treinador--altares---personal-trainer--logo.png",
+        "foregroundImage": "./assets/adaptive-icon-p.png",
         "backgroundColor": "#2d2d2f"
       },
       "package": "com.chicowall.PersonalFaltou"
