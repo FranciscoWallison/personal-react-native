@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "PersonalFaltou",
+    "slug": "PersonalFaltou",
+    "version": "1.0.3",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash_2.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2d2d2f"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "versionCode": 3,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/Euro-Treino--academia--treinador--altares---personal-trainer--logo.png",
+        "backgroundColor": "#2d2d2f"
+      },
+      "package": "com.chicowall.PersonalFaltou"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "edcf0c26-2076-405e-b0b2-2569e13e956b"
+      }
+    }
+  }
+}

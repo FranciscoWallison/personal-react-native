@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "PersonalFaltou",
-    "slug": "PersonalFaltou",
+    "name": "PersonalFaltouAluno",
+    "slug": "PersonalFaltouAluno",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.chicowall.PersonalFaltou"
+      "package": "com.chicowall.PersonalFaltouAluno"
     },
     "web": {
       "favicon": "./assets/favicon.png"
