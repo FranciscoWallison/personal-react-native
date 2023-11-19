@@ -3,7 +3,6 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs/src";
 import { MaterialIcons } from "@expo/vector-icons";
 
-// TODO::USAR TOKEN DE ATIVIDADES
 import ListaDeAtividades from "../../../components/ListaDeAtividades";
 import AdicionarExercicios from "../../../components/AdicionarExercicios";
 import FourDigits from "../../../components/FourDigits";
@@ -30,7 +29,7 @@ const BottomTabNavigator = () => {
         options={{
           tabBarLabel: "Lista de Atividades",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="create" size={size} color={color} />
+            <MaterialIcons name="format-list-bulleted" size={size} color={color} />
           ),
         }}
       />

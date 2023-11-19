@@ -42,8 +42,9 @@ const ListaDeAtividades = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      {exerciciosAluno.map((item: any) => (
+      {exerciciosAluno.map((item: any, index: any) => (
         <Pressable
+          key={index}
           style={[styles.button, styles.buttonClose]}
           onPress={() => showAtividades(item)}
         >

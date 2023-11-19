@@ -46,6 +46,9 @@ class User {
     return new Promise((resolve, reject) => {
       setTimeout(async () => {
         try {
+          if (user === undefined) {
+            resolve(false);
+          }
           const stringToken = JSON.stringify(user);
           await AsyncStorage.setItem(USER_TOKEN, stringToken);
           const tokenUaser = await this.get();

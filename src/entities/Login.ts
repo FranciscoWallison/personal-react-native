@@ -1,4 +1,3 @@
-// TODO::Criar modal
 import Users from "./Users";
 
 class Login {

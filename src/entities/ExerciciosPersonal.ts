@@ -1,4 +1,3 @@
-// TODO::Criar modal
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Users from "./Users";
 const EXERCICIOS_PERSONAL = "exercicios";
