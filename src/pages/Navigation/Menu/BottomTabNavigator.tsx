@@ -39,7 +39,7 @@ const BottomTabNavigator = () => {
         options={{
           tabBarLabel: "Adicionar Exercícios",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="view-list" size={size} color={color} />
+            <MaterialIcons name="playlist-add" size={size} color={color} />
           ),
         }}
       />

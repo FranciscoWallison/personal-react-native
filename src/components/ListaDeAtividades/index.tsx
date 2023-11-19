@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View, Text, Button, StyleSheet, Pressable } from "react-native";
 import ModalExercicios from "../ModalExercicios";
 import ExerciciosPersonal from "../../entities/ExerciciosPersonal";
+import LoadingOverlay from "../LoadingOverlay"; // Substitua pelo caminho correto do seu componente de carregamento
+
 interface IExercicio {
   id: number;
   nome: string;
@@ -12,6 +14,7 @@ interface IExercicio {
 const ListaDeAtividades = ({ navigation }: any) => {
   const exerciciosPersonal = new ExerciciosPersonal();
 
+  const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [exerciciosAluno, setExerciciosAluno] = useState([]);
   const [exercicios, setExercicios] = useState<IExercicio[]>([]);
@@ -19,8 +22,14 @@ const ListaDeAtividades = ({ navigation }: any) => {
   useEffect(() => {
     // Função para verificar a área de transferência e definir os valores dos inputs
     const verificarClipboard = async () => {
-      const result = await exerciciosPersonal.consult_treinador();
-      setExerciciosAluno(result);
+      try {
+        setLoading(true);
+
+        const result = await exerciciosPersonal.consult_treinador();
+        setExerciciosAluno(result);
+      } finally {
+        setLoading(false);
+      }
     };
     verificarClipboard();
   }, [exercicios]);
@@ -42,6 +51,7 @@ const ListaDeAtividades = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
+      <LoadingOverlay visible={loading} />
       {exerciciosAluno.map((item: any, index: any) => (
         <Pressable
           key={index}

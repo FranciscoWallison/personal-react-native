@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { styles } from "./style";
 import ModalExercicios from "../ModalExercicios";
+import LoadingOverlay from "../LoadingOverlay"; // Substitua pelo caminho correto do seu componente de carregamento
 
 interface IExercicio {
   id: number;
@@ -22,6 +23,8 @@ interface IExercicio {
 }
 
 const AdicionarExercicios = ({ navigation }: any) => {
+  const [loading, setLoading] = useState(false);
+
   const [exercicioNome, setExercicioNome] = useState("");
   const [exercicioDescricao, setExercicioDescricao] = useState("");
   const [videoURL, setVideoURI] = useState("");
@@ -47,22 +50,29 @@ const AdicionarExercicios = ({ navigation }: any) => {
   };
 
   const adicionarExercicio = () => {
-    const novoExercicio: IExercicio = {
-      id: exercicios.length + 1,
-      nome: exercicioNome,
-      descricao: exercicioDescricao,
-      videoURL: videoURL,
-      videoID: validarUrlYutube(videoURL),
-    };
-    setExercicios([...exercicios, novoExercicio]);
+    try {
+      setLoading(true);
 
-    // Atualiza o plano de treino com o novo exercício
-    // planoDeTreino.exercicios.push(novoExercicio);
+      const novoExercicio: IExercicio = {
+        id: exercicios.length + 1,
+        nome: exercicioNome,
+        descricao: exercicioDescricao,
+        videoURL: videoURL,
+        videoID: validarUrlYutube(videoURL),
+      };
+      setExercicios([...exercicios, novoExercicio]);
 
-    // Limpa os campos após adicionar o exercício
-    setExercicioNome("");
-    setExercicioDescricao("");
-    setVideoURI("");
+      // Atualiza o plano de treino com o novo exercício
+      // planoDeTreino.exercicios.push(novoExercicio);
+
+      // Limpa os campos após adicionar o exercício
+      setExercicioNome("");
+      setExercicioDescricao("");
+      setVideoURI("");
+      // Operação concluída, faça o que precisar aqui
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleConfirmarEditar = () => {
@@ -78,12 +88,18 @@ const AdicionarExercicios = ({ navigation }: any) => {
   };
 
   const confimarExercicios = () => {
-    navigation.navigate("Success", { exercicios });
-    setModalVisible(!modalVisible);
+    try {
+      navigation.navigate("Success", { exercicios });
+      setModalVisible(!modalVisible);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <View style={styles.container}>
+      <LoadingOverlay visible={loading} />
+
       <View style={styles.title_exercicios}>
         <Text style={styles.text_exercicios}>
           Exercícios Adicionados: {exercicios.length}
