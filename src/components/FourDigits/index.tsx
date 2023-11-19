@@ -2,8 +2,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import * as Clipboard from "expo-clipboard";
+import ExerciciosPersonal from "../../entities/ExerciciosPersonal";
+import ModalExercicios from "../ModalExercicios";
 
-const FourDigits = () => {
+interface IExercicio {
+  id: number;
+  nome: string;
+  descricao: string;
+  videoURL: string;
+  videoID: string;
+}
+const FourDigits = ({ navigation }: any) => {
+  const exerciciosPersonal = new ExerciciosPersonal();
   const [digit1, setDigit1] = useState("");
   const [digit2, setDigit2] = useState("");
   const [digit3, setDigit3] = useState("");
@@ -31,7 +41,7 @@ const FourDigits = () => {
     verificarClipboard();
   }, [digit1, digit2, digit3, digit4]);
 
-  const handleInputChange = (inputNumber, text) => {
+  const handleInputChange = (inputNumber: any, text: any) => {
     switch (inputNumber) {
       case 1:
         setDigit1(text);
@@ -62,12 +72,16 @@ const FourDigits = () => {
     }
   };
 
-  const handleEventStart = (text4) => {
+  const handleEventStart = async (text4: any) => {
     // Lógica para iniciar o evento quando os 4 dígitos estiverem preenchidos
-    const fourDigits = digit1 + digit2 + digit3 + (digit4 === "" ? text4 : digit4);
+    const fourDigits =
+      digit1 + digit2 + digit3 + (digit4 === "" ? text4 : digit4);
     if (fourDigits.length === 4) {
       // Faça algo com os 4 dígitos
       console.log("Evento iniciado:", fourDigits);
+      const result = await exerciciosPersonal.consult_token(fourDigits);
+      console.log("Evento iniciado 2 :", result);
+      showAtividades(result);
     } else {
       console.log("Preencha todos os 4 dígitos.", fourDigits);
     }
@@ -86,6 +100,25 @@ const FourDigits = () => {
   const handleInput3Submit = () => {
     console.log("handleInput3Submit");
     inputRef4.current.focus();
+  };
+
+  // modal
+  const [modalVisible, setModalVisible] = useState(false);
+  const [exerciciosAluno, setExerciciosAluno] = useState([]);
+  const [exercicios, setExercicios] = useState<IExercicio[]>([]);
+  const onExerciciosDelete = (id: any) => {
+    const newExercicios = exercicios.filter((objeto) => objeto.id !== id);
+    setExercicios(newExercicios);
+  };
+
+  const confimarExercicios = () => {
+    navigation.navigate("Success", { exercicios });
+    setModalVisible(!modalVisible);
+  };
+
+  const showAtividades = (item: any) => {
+    setExercicios(item.route);
+    setModalVisible(true);
   };
 
   return (
@@ -129,6 +162,18 @@ const FourDigits = () => {
         />
       </View>
       <Button title="Consultar" onPress={handleEventStart} />
+
+      <ModalExercicios
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        exercicios={exercicios}
+        onExerciciosDelete={onExerciciosDelete}
+        validonExerciciosDelete={false}
+        confimarExercicios={confimarExercicios}
+        validConfimarExercicios={false}
+        textoTitle={"Lista de Atividades"}
+        textoVoltar={"Voltar"}
+      />
     </View>
   );
 };

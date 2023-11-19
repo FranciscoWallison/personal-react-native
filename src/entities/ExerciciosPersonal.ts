@@ -39,7 +39,7 @@ class ExerciciosPersonal {
     });
   }
 
-  public async consult_token(token_exercicio: any): Promise<string> {
+  public async consult_token(token_exercicio: any): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(async () => {
         try {
@@ -48,11 +48,9 @@ class ExerciciosPersonal {
             EXERCICIOS_PERSONAL,
             token_exercicio
           );
-          const data = getDoc(singleUsuario);
-          const exercicio = { ...data?.data(), token: data?.token };
-          console.log("consult: ", exercicio);
-
-          resolve("Operação bem-sucedida!");
+          const data = await getDoc(singleUsuario);
+          const exercicio = { ...data?.data(), token: data?.id };
+          resolve(exercicio);
         } catch (error) {
           reject(new Error(`Erro na operação! ${error}`));
         }
