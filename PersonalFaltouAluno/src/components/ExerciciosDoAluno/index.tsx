@@ -13,10 +13,18 @@ const ExerciciosDoAluno = ({
   return (
     <View style={styles.container}>
       <View style={styles.areaPessoa}>
-        <Text style={styles.textoPessoa}>#{exercicios.id} </Text>
-        <Text style={styles.textoPessoa}>Exercício: {exercicios.nome} </Text>
+        {/* header */}
+        <View>
+          <Text style={styles.textoPessoa}>#{exercicios.id} </Text>
+          <Text style={styles.textoPessoa}>Exercício: {exercicios.nome} </Text>
+        </View>
+        {/* body */}
+
         <VisualizacaoVideos idVideo={exercicios.videoID} />
-        <Text style={styles.textoPessoa}>
+
+        {/* footer */}
+
+        <Text style={[styles.textoPessoa, { marginTop: 2 }]}>
           Descrição: {exercicios.descricao}{" "}
         </Text>
         <TouchableOpacity
@@ -25,7 +33,6 @@ const ExerciciosDoAluno = ({
             console.log("renderItem: ", exercicios.id);
           }}
         >
-          {/* <Button title="Editar" onPress={() => handleEditar(exercicios.id)} /> */}
           {validonExerciciosDelete ? (
             <Button
               title="Deletar"

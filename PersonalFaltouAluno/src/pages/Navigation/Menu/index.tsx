@@ -1,14 +1,7 @@
-// navigation/Home.tsx
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import BottomTabNavigator from './BottomTabNavigator';
+import FourDigits from "../../../components/FourDigits";
 
 const Home = () => {
-  return (
-    <>
-      <BottomTabNavigator />
-    </>
-  );
+  return <FourDigits/>;
 };
 
 export default Home;

@@ -4,6 +4,7 @@ import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import * as Clipboard from "expo-clipboard";
 import ExerciciosPersonal from "../../entities/ExerciciosPersonal";
 import ModalExercicios from "../ModalExercicios";
+import LoadingOverlay from "../LoadingOverlay";
 
 interface IExercicio {
   id: number;
@@ -14,6 +15,7 @@ interface IExercicio {
 }
 const FourDigits = ({ navigation }: any) => {
   const exerciciosPersonal = new ExerciciosPersonal();
+  const [loading, setLoading] = useState(false);
   const [digit1, setDigit1] = useState("");
   const [digit2, setDigit2] = useState("");
   const [digit3, setDigit3] = useState("");
@@ -73,17 +75,23 @@ const FourDigits = ({ navigation }: any) => {
   };
 
   const handleEventStart = async (text4: any) => {
-    // Lógica para iniciar o evento quando os 4 dígitos estiverem preenchidos
-    const fourDigits =
-      digit1 + digit2 + digit3 + (digit4 === "" ? text4 : digit4);
-    if (fourDigits.length === 4) {
-      // Faça algo com os 4 dígitos
-      console.log("Evento iniciado:", fourDigits);
-      const result = await exerciciosPersonal.consult_token(fourDigits);
-      console.log("Evento iniciado 2 :", result);
-      showAtividades(result);
-    } else {
-      console.log("Preencha todos os 4 dígitos.", fourDigits);
+    try {
+      setLoading(true);
+
+      // Lógica para iniciar o evento quando os 4 dígitos estiverem preenchidos
+      const fourDigits =
+        digit1 + digit2 + digit3 + (digit4 === "" ? text4 : digit4);
+      if (fourDigits.length === 4) {
+        // Faça algo com os 4 dígitos
+        console.log("Evento iniciado:", fourDigits);
+        const result = await exerciciosPersonal.consult_token(fourDigits);
+        console.log("Evento iniciado 2 :", result);
+        showAtividades(result);
+      } else {
+        console.log("Preencha todos os 4 dígitos.", fourDigits);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -105,7 +113,15 @@ const FourDigits = ({ navigation }: any) => {
   // modal
   const [modalVisible, setModalVisible] = useState(false);
   const [exerciciosAluno, setExerciciosAluno] = useState([]);
-  const [exercicios, setExercicios] = useState<IExercicio[]>([]);
+  const [exercicios, setExercicios] = useState<IExercicio[]>([
+    {
+      id: 0,
+      nome: "TESTE",
+      descricao: "TESTE",
+      videoURL: "",
+      videoID: "",
+    },
+  ]);
   const onExerciciosDelete = (id: any) => {
     const newExercicios = exercicios.filter((objeto) => objeto.id !== id);
     setExercicios(newExercicios);
@@ -123,6 +139,7 @@ const FourDigits = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
+      <LoadingOverlay visible={loading} />
       <Text style={styles.title}>Digite 4 Dígitos </Text>
       <View style={styles.inputContainer}>
         <TextInput

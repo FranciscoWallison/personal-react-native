@@ -4,7 +4,7 @@ import * as Clipboard from "expo-clipboard";
 import ExerciciosPersonal from "../../entities/ExerciciosPersonal";
 import Users from "../../entities/Users";
 
-const Success = ({ route, navigation }) => {
+const Success = ({ route, navigation }: any) => {
   const userLogin = new Users();
   const exerciciosPersonal = new ExerciciosPersonal();
 

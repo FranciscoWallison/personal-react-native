@@ -2,13 +2,14 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
     // padding: 16,
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 8,
     marginBottom: 8,
     backgroundColor: "black",
-    height: 400
+    width: "100%",
   },
   itemContainer: {
     // flexDirection: 'row',
@@ -21,7 +22,7 @@ export const styles = StyleSheet.create({
   },
   areaPessoa: {
     backgroundColor: "black",
-    height: 400,
+
     marginBottom: 15,
     padding: 5,
   },

@@ -35,18 +35,11 @@ const AdicionarExercicios = ({ navigation }: any) => {
 
   //TODO::criar um estrutura de helps ou utilitários
   const validarUrlYutube = (url: string) => {
-    if (url.includes(`https://www.youtube.com/watch?v=`)) {
-      const urlBrawser = url.split("https://www.youtube.com/watch?v=")[1];
-      console.log("https://www.youtube.com/watch?v=", urlBrawser);
+    if (url.includes(`https://drive.google.com/file/d/`)) {
+      const urlBrawser = url.split("https://drive.google.com/file/d/")[1].split("/")[0];
+      console.log(url, urlBrawser);
       return urlBrawser;
     }
-
-    if (url.includes(`https://youtu.be/`)) {
-      const urlSmartPhone = url.split(`https://youtu.be/`)[1].split("?")[0];
-      console.log("https://youtu.be/", urlSmartPhone);
-      return urlSmartPhone;
-    }
-    return "";
   };
 
   const adicionarExercicio = () => {

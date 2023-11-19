@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const VIDEO_HEIGHT = 180;
+export const VIDEO_HEIGHT = 300;
 export const VIDEO_SPACE = 24;
 
 export const styles = StyleSheet.create({
@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'gray',
     // borderRadius: 8,
-    // marginBottom: 8,
+    // margin: 20,
     // backgroundColor: "green",
   },
   video: {
@@ -23,6 +23,11 @@ export const styles = StyleSheet.create({
     height: VIDEO_HEIGHT,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 48,    
+    marginTop: 48
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
