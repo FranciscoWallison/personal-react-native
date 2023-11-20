@@ -7,7 +7,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "apk": "eas build --platform android",
+    "plata-android": "npx expo run:android --variant release",
+    "apkl": "expo build:android",
+    "aab": "eas build --platform android",
+    "apk": "eas build -p android --profile preview",
     "doctor": "npx expo-doctor"
   },
   "dependencies": {
