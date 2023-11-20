@@ -2,25 +2,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const USER_TOKEN = "usertoken";
 
-// export default {
-//   set(user: any) {
-//     console.log("AQUIIII-2: ", user, USER_TOKEN);
-// AsyncStorage.setItem(USER_TOKEN, user);
-// this.valid();
-//   },
-// get() {
-//   const tokenUaser = AsyncStorage.getItem(USER_TOKEN);
-//   return tokenUaser;
-// },
-// valid() {
-//   const valid = this.get();
-//   console.log("valid:", valid);
-// },
-//   delete() {
-//     AsyncStorage.removeItem(USER_TOKEN);
-//   },
-// };
-
 class User {
   // Propriedade privada
   private contador: number;

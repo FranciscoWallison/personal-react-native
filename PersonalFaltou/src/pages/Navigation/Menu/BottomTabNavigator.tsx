@@ -10,6 +10,7 @@ import BotaoDeslogar from "./BotaoDeslogar"; // Um componente que representa o b
 
 const Tab = createBottomTabNavigator();
 
+console.log("TELA - BottomTabNavigator")
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator>

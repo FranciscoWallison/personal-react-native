@@ -22,6 +22,7 @@ interface IExercicio {
   videoID: string;
 }
 
+console.log("TELA - AdicionarExercicios")
 const AdicionarExercicios = ({ navigation }: any) => {
   const [loading, setLoading] = useState(false);
 

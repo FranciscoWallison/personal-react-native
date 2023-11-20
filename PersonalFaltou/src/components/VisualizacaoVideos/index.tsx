@@ -6,6 +6,7 @@ import {
 import { styles} from "./styles";
 import { Video, ResizeMode } from "expo-av";
 
+console.log("TELA - VisualizacaoVideos")
 const VisualizacaoVideos = ({idVideo}: any) => {
   const video = useRef(null);
   const [status, setStatus] = useState({});

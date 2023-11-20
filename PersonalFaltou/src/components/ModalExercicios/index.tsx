@@ -11,6 +11,7 @@ import {
 
 import ExerciciosDoAluno from "../ExerciciosDoAluno";
 
+console.log("TELA - ModalExercicios")
 const ModalExercicios = ({
   modalVisible,
   setModalVisible,

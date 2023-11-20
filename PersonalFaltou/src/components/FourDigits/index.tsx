@@ -12,7 +12,8 @@ interface IExercicio {
   descricao: string;
   videoURL: string;
   videoID: string;
-}
+
+}console.log("TELA - FourDigits")
 const FourDigits = ({ navigation }: any) => {
   const exerciciosPersonal = new ExerciciosPersonal();
   const [loading, setLoading] = useState(false);
@@ -41,7 +42,7 @@ const FourDigits = ({ navigation }: any) => {
     };
 
     verificarClipboard();
-  }, [digit1, digit2, digit3, digit4]);
+  }, []);
 
   const handleInputChange = (inputNumber: any, text: any) => {
     switch (inputNumber) {
@@ -113,15 +114,7 @@ const FourDigits = ({ navigation }: any) => {
   // modal
   const [modalVisible, setModalVisible] = useState(false);
   const [exerciciosAluno, setExerciciosAluno] = useState([]);
-  const [exercicios, setExercicios] = useState<IExercicio[]>([
-    {
-      id: 0,
-      nome: "TESTE",
-      descricao: "TESTE",
-      videoURL: "",
-      videoID: "",
-    },
-  ]);
+  const [exercicios, setExercicios] = useState<IExercicio[]>([]);
   const onExerciciosDelete = (id: any) => {
     const newExercicios = exercicios.filter((objeto) => objeto.id !== id);
     setExercicios(newExercicios);

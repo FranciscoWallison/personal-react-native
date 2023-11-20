@@ -1,7 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Users from "./Users";
 const EXERCICIOS_PERSONAL = "exercicios";
-const EXERCICIOS_PERSONAL_C = "exercicios_C";
 import { app, database } from "../config/firebaseConfig";
 import {
   doc,

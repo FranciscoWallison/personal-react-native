@@ -6,6 +6,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { styles } from "./styles";
 import LoginUser from "../../entities/Login";
 import Users from "../../entities/Users";
+
+console.log("TELA - Login");
 const Login = ({ navigation }) => {
   const userLogin = new LoginUser();
   const users = new Users();

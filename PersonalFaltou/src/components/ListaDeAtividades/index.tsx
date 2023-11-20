@@ -11,6 +11,8 @@ interface IExercicio {
   videoURL: string;
   videoID: string;
 }
+
+console.log("TELA - ListaDeAtividades")
 const ListaDeAtividades = ({ navigation }: any) => {
   const exerciciosPersonal = new ExerciciosPersonal();
 

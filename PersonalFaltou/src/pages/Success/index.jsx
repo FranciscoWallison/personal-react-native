@@ -4,6 +4,7 @@ import * as Clipboard from "expo-clipboard";
 import ExerciciosPersonal from "../../entities/ExerciciosPersonal";
 import Users from "../../entities/Users";
 
+console.log("TELA - Success")
 const Success = ({ route, navigation }) => {
   const userLogin = new Users();
   const exerciciosPersonal = new ExerciciosPersonal();

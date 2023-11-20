@@ -2,6 +2,7 @@ import React from "react";
 import { View, Button } from "react-native";
 import LoginUser from "../../../entities/Login";
 
+console.log("TELA - BotaoDeslogar")
 const BotaoDeslogar = ({ navigation }: any) => {
   const userLogin = new LoginUser();
   const handleDeslogar = async () => {

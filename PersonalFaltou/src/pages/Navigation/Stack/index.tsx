@@ -9,6 +9,7 @@ import Success from '../../Success';
 
 const Stack = createStackNavigator();
 
+console.log("TELA - StackNavigator")
 const StackNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="Splash">
@@ -17,7 +18,6 @@ const StackNavigator = () => {
       <Stack.Screen name="Cadastro" component={Signup} />
       <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
       <Stack.Screen name="Success" component={Success} options={{headerShown:false}}/>
-      {/* Adicione mais telas conforme necessário */}
     </Stack.Navigator>
   );
 };

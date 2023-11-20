@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
 import { auth } from "./../../config/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-
 import { styles } from "./styles";
 
+console.log("TELA - Signup")
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 import User from "../../entities/Users";
 
+console.log("TELA - Splash")
 const Splash = ({ navigation }) => {
   const userLogin = new User();
 
