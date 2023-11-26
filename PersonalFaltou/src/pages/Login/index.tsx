@@ -50,6 +50,8 @@ const Login = ({ navigation }) => {
         style={styles.input}
         placeholder="E-mail"
         keyboardType="email-address"
+        placeholderTextColor="#000"
+        secureTextEntry
         autoCapitalize="none"
         value={email}
         onChangeText={(text) => setEmail(text)}
@@ -57,6 +59,7 @@ const Login = ({ navigation }) => {
       <TextInput
         style={styles.input}
         placeholder="Senha"
+        placeholderTextColor="#000"
         secureTextEntry
         value={password}
         onChangeText={(text) => setPassword(text)}

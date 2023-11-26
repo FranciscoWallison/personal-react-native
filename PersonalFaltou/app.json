@@ -1,40 +1,4 @@
 {
-  "expo": {
-    "name": "PersonalFaltou",
-    "slug": "PersonalFaltou",
-    "version": "1.0.5",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash_2.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#2d2d2f"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "versionCode": 5,
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#2d2d2f"
-      },
-      "package": "com.chicowall.PersonalFaltou"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "edcf0c26-2076-405e-b0b2-2569e13e956b"
-      }
-    },
-    "plugins": [
-      "expo-router"
-    ]
-  }
+  "name": "PersonalFaltou",
+  "displayName": "PersonalFaltou"
 }

@@ -2,12 +2,7 @@ import React, { useState, useRef } from "react";
 import {
   View,
   TextInput,
-  Button,
-  StyleSheet,
   Text,
-  SafeAreaView,
-  Modal,
-  FlatList,
   Pressable,
 } from "react-native";
 import { styles } from "./style";
@@ -70,9 +65,7 @@ const AdicionarExercicios = ({ navigation }: any) => {
   };
 
   const handleConfirmarEditar = () => {
-    const listaDeExercicios = exercicios;
     // Lógica para confirmar e realizar algum evento
-    // console.log("Exercício Confirmado:", listaDeExercicios);
     setModalVisible(true);
   };
 
@@ -103,12 +96,14 @@ const AdicionarExercicios = ({ navigation }: any) => {
       <TextInput
         style={styles.input}
         placeholder="Nome do Exercício"
+        placeholderTextColor="#000"
         value={exercicioNome}
         onChangeText={(text) => setExercicioNome(text)}
       />
       <TextInput
         style={[styles.input, { height: 200, textAlignVertical: "top" }]}
         placeholder="Descrição do Exercício"
+        placeholderTextColor="#000"
         value={exercicioDescricao}
         multiline={true}
         numberOfLines={10}
@@ -117,6 +112,7 @@ const AdicionarExercicios = ({ navigation }: any) => {
       <TextInput
         style={styles.input}
         placeholder="URL do Vídeo Demonstrativo"
+        placeholderTextColor="#000"
         value={videoURL}
         onChangeText={(text) => setVideoURI(text)}
       />

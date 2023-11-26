@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    color: "black"
   },
   video: {
     alignSelf: "center",
@@ -27,6 +28,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     fontSize: 20,
+    color: "black"
   },
   icon_exercicios: {
     flex: 1,

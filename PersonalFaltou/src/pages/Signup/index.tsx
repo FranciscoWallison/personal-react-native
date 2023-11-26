@@ -40,12 +40,15 @@ const Signup = ({ navigation }) => {
         placeholder="E-mail"
         keyboardType="email-address"
         autoCapitalize="none"
+        placeholderTextColor="#000"
+        secureTextEntry
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Senha"
+        placeholderTextColor="#000"
         secureTextEntry
         value={password}
         onChangeText={(text) => setPassword(text)}

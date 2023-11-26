@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 16,
+    color: "black"
   },
   input: {
     height: 40,
@@ -17,6 +18,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 16,
     paddingLeft: 8,
+    color: "black"
   },
   error: { color: "red", textAlign: "center", marginTop: 10 },
 });

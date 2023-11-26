@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Pressable, Button } from "react-native";
-import * as Clipboard from "expo-clipboard";
+import Clipboard from '@react-native-clipboard/clipboard';
 import ExerciciosPersonal from "../../entities/ExerciciosPersonal";
 import Users from "../../entities/Users";
 
@@ -47,7 +47,7 @@ const Success = ({ route, navigation }) => {
 
   const copiarTextoParaClipboard = async () => {
     // console.log("route:", route)
-    await Clipboard.setStringAsync(token);
+    Clipboard.setString(token);
     alert("Token copiado para a área de transferência!");
   };
 

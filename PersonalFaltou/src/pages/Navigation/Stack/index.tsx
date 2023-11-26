@@ -1,13 +1,13 @@
 // navigation/StackNavigator.tsx
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../../Navigation/Menu';
 import Login from '../../Login';
 import Signup from '../../Signup';
 import Splash from '../../Splash';
 import Success from '../../Success';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 console.log("TELA - StackNavigator")
 const StackNavigator = () => {

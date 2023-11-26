@@ -1,12 +1,12 @@
 // navigation/BottomTabNavigator.tsx
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs/src";
-import { MaterialIcons } from "@expo/vector-icons";
+import Icon  from "react-native-vector-icons/MaterialIcons";
 
 import ListaDeAtividades from "../../../components/ListaDeAtividades";
 import AdicionarExercicios from "../../../components/AdicionarExercicios";
 import FourDigits from "../../../components/FourDigits";
-import BotaoDeslogar from "./BotaoDeslogar"; // Um componente que representa o botão de deslogar
+import BotaoDeslogar from "./BotaoDeslogar";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +20,7 @@ const BottomTabNavigator = () => {
         options={{
           tabBarLabel: "Aluno",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="create" size={size} color={color} />
+            <Icon name="create" size={size} color={color} />
           ),
         }}
       />
@@ -30,7 +30,7 @@ const BottomTabNavigator = () => {
         options={{
           tabBarLabel: "Lista de Atividades",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="format-list-bulleted" size={size} color={color} />
+            <Icon name="format-list-bulleted" size={size} color={color} />
           ),
         }}
       />
@@ -40,7 +40,7 @@ const BottomTabNavigator = () => {
         options={{
           tabBarLabel: "Adicionar Exercícios",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="playlist-add" size={size} color={color} />
+            <Icon name="playlist-add" size={size} color={color} />
           ),
         }}
       />
@@ -50,7 +50,7 @@ const BottomTabNavigator = () => {
         options={{
           tabBarLabel: "Sair",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="logout" size={size} color={color} />
+            <Icon name="logout" size={size} color={color} />
           ),
         }}
       />
