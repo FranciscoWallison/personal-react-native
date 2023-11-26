@@ -1,3 +1,14 @@
+
+````
+node_modules/react-native-vector-icons/Fonts
+````
+
+````
+android\app\src\main\assets\fonts
+````
+
+
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
