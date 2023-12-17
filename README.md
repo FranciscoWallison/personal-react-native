@@ -1,5 +1,5 @@
 # Personal em React Native
 
-app personal 
+App personal 
 
-app aluno
+App aluno
