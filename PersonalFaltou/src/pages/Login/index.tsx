@@ -12,8 +12,11 @@ const Login = ({ navigation }) => {
   const userLogin = new LoginUser();
   const users = new Users();
 
-  const [email, setEmail] = useState("franciscowallison@gmail.com");
-  const [password, setPassword] = useState("123456");
+  // const [email, setEmail] = useState("franciscowallison@gmail.com");
+  // const [password, setPassword] = useState("123456");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
 
   const [textoLogin, setTextoLogin] = useState("");
 
