@@ -1,7 +1,7 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import Users from "./Users";
-const EXERCICIOS_PERSONAL = "exercicios";
-import { app, database } from "../config/firebaseConfig";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Users from './Users';
+const EXERCICIOS_PERSONAL = 'exercicios';
+import {app, database} from '../config/firebaseConfig';
 import {
   doc,
   getDoc,
@@ -11,7 +11,7 @@ import {
   query,
   where,
   addDoc,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
 const dbInstance = collection(database, EXERCICIOS_PERSONAL);
 
@@ -30,7 +30,7 @@ class ExerciciosPersonal {
         try {
           await setDoc(doc(dbInstance, exercicios.token), exercicios);
 
-          resolve("Operação bem-sucedida!");
+          resolve('Operação bem-sucedida!');
         } catch (error) {
           reject(new Error(`Erro na operação! ${error}`));
         }
@@ -45,12 +45,13 @@ class ExerciciosPersonal {
           const singleUsuario = doc(
             database,
             EXERCICIOS_PERSONAL,
-            token_exercicio
+            token_exercicio,
           );
           const data = await getDoc(singleUsuario);
-          const exercicio = { ...data?.data(), token: data?.id };
+          const exercicio = {...data?.data(), token: data?.id};
           resolve(exercicio);
         } catch (error) {
+          console.log(`consult_token: Erro na operação! ${error}`);
           reject(new Error(`Erro na operação! ${error}`));
         }
       }, 1000);
@@ -65,15 +66,16 @@ class ExerciciosPersonal {
 
           const citiesCollection = collection(database, EXERCICIOS_PERSONAL);
 
-          const q = query(citiesCollection, where("uid", "==", user.uid));
+          const q = query(citiesCollection, where('uid', '==', user.uid));
 
           const querySnapshot = await getDocs(q);
-          let allUser = []
+          let allUser = [];
           querySnapshot.forEach((doc: any) => {
-            allUser.push({ ...doc.data(), id: doc.id });
+            allUser.push({...doc.data(), id: doc.id});
           });
           resolve(allUser);
         } catch (error) {
+          console.log(`consult_token: Erro na operação! ${error}`);
           reject(new Error(`Erro na operação! ${error}`));
         }
       }, 1000);
@@ -86,9 +88,9 @@ class ExerciciosPersonal {
         AsyncStorage.setItem(EXERCICIOS_PERSONAL, exercicios);
 
         if (await this.valid()) {
-          resolve("Operação bem-sucedida!");
+          resolve('Operação bem-sucedida!');
         } else {
-          reject(new Error("Erro na operação!"));
+          reject(new Error('Erro na operação!'));
         }
       }, 1000);
     });
@@ -100,7 +102,7 @@ class ExerciciosPersonal {
         if (await this.valid()) {
           resolve(exercicios);
         } else {
-          reject(new Error("Erro na operação!"));
+          reject(new Error('Erro na operação!'));
         }
       }, 1000);
     });
@@ -109,11 +111,11 @@ class ExerciciosPersonal {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const valid = this.get();
-        console.log("valid:", valid);
+        console.log('valid:', valid);
         if (!valid) {
           resolve(true);
         } else {
-          reject(new Error("Erro na operação!"));
+          reject(new Error('Erro na operação!'));
         }
       }, 1000);
     });
@@ -126,7 +128,7 @@ class ExerciciosPersonal {
         if (valid === null) {
           resolve(true);
         } else {
-          reject(new Error("Erro na operação!"));
+          reject(new Error('Erro na operação!'));
         }
       }, 1000);
     });
