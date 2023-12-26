@@ -141,12 +141,14 @@ const FourDigits = ({ navigation }: any) => {
           onChangeText={(text) => handleInputChange(1, text)}
           maxLength={1}
           keyboardType="numeric"
+          placeholderTextColor="#000"
           onSubmitEditing={handleInput1Submit}
         />
         <TextInput
           ref={inputRef2}
           style={styles.input}
           keyboardType="numeric"
+          placeholderTextColor="#000"
           maxLength={1}
           value={digit2}
           onChangeText={(text) => handleInputChange(2, text)}
@@ -156,6 +158,7 @@ const FourDigits = ({ navigation }: any) => {
           ref={inputRef3}
           style={styles.input}
           keyboardType="numeric"
+          placeholderTextColor="#000"
           maxLength={1}
           value={digit3}
           onChangeText={(text) => handleInputChange(3, text)}
@@ -165,6 +168,7 @@ const FourDigits = ({ navigation }: any) => {
           ref={inputRef4}
           style={styles.input}
           keyboardType="numeric"
+          placeholderTextColor="#000"
           maxLength={1}
           value={digit4}
           onChangeText={(text) => handleInputChange(4, text)}
@@ -212,6 +216,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     textAlign: "center",
     borderRadius: 2,
+    color: "black"
   },
 });
 
