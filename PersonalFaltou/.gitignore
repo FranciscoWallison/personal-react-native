@@ -72,6 +72,6 @@ yarn-error.log
 *.env
 package-lock.json
 yarn.lock
-/android
+/android/gradle.properties
 /ios
 /src/config/EvConfig.ts
