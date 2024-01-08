@@ -1,7 +1,5 @@
 # Personal em React Native
 
-App personal 
+Link da loja Personal  https://play.google.com/store/apps/details?id=com.chicowall.PersonalFaltou
 
-App aluno
-
-
+Link da loja do Aluno https://play.google.com/store/apps/details?id=com.chicowall.PersonalFaltouAluno
