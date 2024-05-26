@@ -26,7 +26,7 @@ const Signup = ({ navigation }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log("error: ", error, errorMessage, errorCode);
+        console.error("error: ", error, errorMessage, errorCode);
         setValidErro(true)
         // ..
       });

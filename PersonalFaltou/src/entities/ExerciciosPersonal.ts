@@ -51,7 +51,7 @@ class ExerciciosPersonal {
           const exercicio = {...data?.data(), token: data?.id};
           resolve(exercicio);
         } catch (error) {
-          console.log(`consult_token: Erro na operação! ${error}`);
+          console.error(`consult_token: Erro na operação! ${error}`);
           reject(new Error(`Erro na operação! ${error}`));
         }
       }, 1000);
@@ -75,7 +75,7 @@ class ExerciciosPersonal {
           });
           resolve(allUser);
         } catch (error) {
-          console.log(`consult_token: Erro na operação! ${error}`);
+          console.error(`consult_treinador: Erro na operação! ${error}`);
           reject(new Error(`Erro na operação! ${error}`));
         }
       }, 1000);
