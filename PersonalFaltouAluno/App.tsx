@@ -3,7 +3,7 @@ import StackNavigator from './src/pages/Navigation/Stack';
 const App = () => {
   return (
     // <NavigationContainer>
-      <StackNavigator />
+    <StackNavigator />
     // </NavigationContainer>
   );
 };

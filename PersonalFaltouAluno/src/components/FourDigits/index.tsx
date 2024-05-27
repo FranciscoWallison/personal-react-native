@@ -1,7 +1,7 @@
 // screens/FourDigits.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
-import * as Clipboard from "expo-clipboard";
+import Clipboard from '@react-native-clipboard/clipboard';
 import ExerciciosPersonal from "../../entities/ExerciciosPersonal";
 import ModalExercicios from "../ModalExercicios";
 import LoadingOverlay from "../LoadingOverlay";
@@ -27,7 +27,7 @@ const FourDigits = ({ navigation }: any) => {
   useEffect(() => {
     // Função para verificar a área de transferência e definir os valores dos inputs
     const verificarClipboard = async () => {
-      const textoClipboard = await Clipboard.getStringAsync();
+      const textoClipboard = await Clipboard.getString();
       if (textoClipboard.length === 4 && /^\d+$/.test(textoClipboard)) {
         console.log("aqui:", textoClipboard.split(""));
         const number = textoClipboard.split("");

@@ -1,37 +1,4 @@
 {
-  "expo": {
- 
-    "name": "PersonalFaltouAluno",
-    "slug": "PersonalFaltouAluno",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon_2.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash_2.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#2d2d2f"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#2d2d2f"
-      },
-      "package": "com.chicowall.PersonalFaltouAluno"
-    },
-    "web": {
-      "favicon": "./assets/favicon_2.ico"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "7047c89a-8179-41b1-b233-3cce7948cda7"
-      }
-    }
-  }
+  "name": "PersonalFaltouAluno",
+  "displayName": "PersonalFaltouAluno"
 }
