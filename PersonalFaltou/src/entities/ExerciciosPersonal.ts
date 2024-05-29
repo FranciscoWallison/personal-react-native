@@ -28,7 +28,13 @@ class ExerciciosPersonal {
     return new Promise((resolve, reject) => {
       setTimeout(async () => {
         try {
-          await setDoc(doc(dbInstance, exercicios.token), exercicios);
+          console.log('====================================');
+          console.log('create: ', exercicios, EXERCICIOS_PERSONAL);
+          console.log('====================================');
+          await setDoc(
+            doc(database, EXERCICIOS_PERSONAL, exercicios.token),
+            exercicios,
+          );
 
           resolve('Operação bem-sucedida!');
         } catch (error) {

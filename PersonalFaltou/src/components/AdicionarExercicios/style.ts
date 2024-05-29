@@ -75,6 +75,16 @@ export const styles = StyleSheet.create({
     backgroundColor: "blue",
     marginTop: 20,
   },
+  buttonConfirmarEditar_zero: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "gray",
+    marginTop: 20,
+  },
   textStyleClose: {
     color: "white",
     fontWeight: "bold",
